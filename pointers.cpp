@@ -12,31 +12,29 @@ const int SIZE = 100;
 struct Order{ //bakery's database of orders
     
     string name; //customer name
-    double money; //double for the receipt total 
-    string *items; /*= nullptr; //dynamic array of a customer's order history
-    orders = new string[SIZE]; //cap the size at 100 orders */
+    double money; //double for the receipt total
+    int count; //represents number of items purchased in the order - like a costco item count
+    string *items; //dynamic array of an itemized list of an order
 
 }
 
-Customer createCustomer(){
-    Customer temp;
+Order createOrder(){
+    Order temp;
     
     cout << "Customer name: ";
     getline(cin, temp.name);
 
-    temp.cuisine = 0;
-    temp.stars = 0;
-    
+    cout << "Order total: $";
+    getline(cin, temp.money);
 
-    cout << "Owner's name: ";
-    getline(cin, temp.owner);
+    cout << "Item count: ";
+    cin >> temp.count;
 
-    cout << "Max customer occupancy: ";
-    cin >> temp.maxTotal;
+    temp.*items = new string[temp.count];
+    for (int i = 0; i < temp.count; i++){
+        temp.*(items+i) = 
 
-    cout << "Restaurant rating (1.0-5.0 star scale): ";
-    cin >> temp.rating;
-    cout << endl;
+    }
 
     // returns: a Restaurant struct based upon the user's input
     return temp;

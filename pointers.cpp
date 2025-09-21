@@ -19,7 +19,7 @@ struct Order{ //bakery's database of orders
 };
 
 Order createOrder(){
-	Order temp;i
+	Order temp;
         temp.items = nullptr;
 
 	cout << "Customer name: ";
@@ -30,7 +30,7 @@ Order createOrder(){
 
 	cout << "Item count: ";
 	cin >> temp.count;
-        
+        cin.ignore();        
 
 	temp.items = new string[temp.count];
 	for (int i = 0; i < temp.count; i++){
@@ -38,6 +38,7 @@ Order createOrder(){
 		getline(cin, temp.items[i]);
 
 	}
+
 
 	// returns: a Order struct based upon the user's input
 	return temp;
@@ -47,16 +48,16 @@ Order createOrder(){
 
 void displayOrder(Order o){
 
-	cout << "Customer name: " << o.name;
-	cout << "Order total: " << o.money;
-	cout << "Items: ";
+	cout << "\nCustomer name: " << o.name;
+	cout << "\nOrder total: $" << o.money;
+	cout << "\nItems: ";
 	for (int i = 0; i < o.count; i++){
 		if (i == 0)
-			cout << o.*items;
+			cout << o.items[i];
 		else
-			cout << ", " << o.*(items+i);
+			cout << ", " << o.items[i];
 	} 
-
+        cout<< '\n' << endl;
 }
 
 int main(){

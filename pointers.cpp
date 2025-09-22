@@ -1,4 +1,4 @@
-// COMSC-210 | Lab 12 | Justin Beiber (your name)
+// COMSC-210 | Lab 11 | Diksha Tara Natesan
 // IDE used: Vim (Terminal) 
 
 #include <iostream>

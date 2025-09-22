@@ -26,46 +26,12 @@ struct Order{ //bakery's database of orders
 //createOrder() takes user input to create an Order object
 //arguments: none
 //returns: an Order struct based upon the user's input
-void createOrder(Order *ptr){
-
-    static int nrOrd = 1;    //confused by the use of this
-    cout << "Customer name: ";
-    getline(cin, ptr->name);
-
-    cout << "Order total: $";
-    cin >> ptr->money;
-
-    cout << "Item count: ";
-    cin >> ptr->count;
-    cin.ignore();        
-
-    ptr -> items = new string[ptr->count];
-    for (int i = 0; i < ptr->count; i++){
-        cout << "Item " << (i+1) << ": ";
-        getline(cin, ptr->items[i]);
-    }
-
-    cout << endl;
-    nrOrd++;
-
-}
+void createOrder(Order *);
 
 // displayOrder() outputs an Order object's data
 // arguments: takes in an order object to use to output its information
 // returns: nothing
-void displayOrder(Order *ptr){
-
-    cout << "Customer name: " << ptr->name;
-    cout << "\nOrder total: $" << ptr->money;
-    cout << "\nItems: ";
-    for (int i = 0; i < ptr->count; i++){
-	if (i == 0)
-	    cout << ptr->items[i];
-	else
-            cout << ", " << ptr->items[i];
-    } 
-    cout << '\n' << endl;
-}
+void displayOrder(Order *);
 
 
 // main() creates a dynamic array of the Order structs to create an order history for the bakery
@@ -85,4 +51,40 @@ int main(){
     return 0;
 }
 
+void createOrder(Order *ptr){
 
+    static int nrOrd = 1;    //confused by the use of this
+    cout << "Customer name: ";
+    getline(cin, ptr->name);
+
+    cout << "Order total: $";
+    cin >> ptr->money;
+
+    cout << "Item count: ";
+    cin >> ptr->count;
+    cin.ignore();
+
+    ptr -> items = new string[ptr->count];
+    for (int i = 0; i < ptr->count; i++){
+        cout << "Item " << (i+1) << ": ";
+        getline(cin, ptr->items[i]);
+    }
+
+    cout << endl;
+    nrOrd++;
+
+}
+
+void displayOrder(Order *ptr){
+
+    cout << "Customer name: " << ptr->name;
+    cout << "\nOrder total: $" << ptr->money;
+    cout << "\nItems: ";
+    for (int i = 0; i < ptr->count; i++){
+        if (i == 0)
+            cout << ptr->items[i];
+        else
+            cout << ", " << ptr->items[i];
+    }
+    cout << '\n' << endl;
+}

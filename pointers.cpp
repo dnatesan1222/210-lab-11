@@ -5,8 +5,7 @@
 #include <string>
 using namespace std;
 
-
-
+const int NR_ORDERS = 3;
 
 struct Order{ //bakery's database of orders
 
@@ -14,7 +13,12 @@ struct Order{ //bakery's database of orders
     double money; //double for the receipt total
     int count; //represents number of items purchased in the order - like a costco item count
     string *items; //dynamic array of an itemized list of an order
-        
+
+    ~Order() {
+        if(items)
+            delete [] items;
+        items = nullptr;
+    }        
 };
 
 
@@ -23,7 +27,7 @@ struct Order{ //bakery's database of orders
 //returns: an Order struct based upon the user's input
 void createOrder(Order *ptr){
 
-    static int nrOrd = 1;    
+    static int nrOrd = 1;    //confused by the use of this
     cout << "Customer name: ";
     getline(cin, ptr->name);
 
@@ -67,22 +71,16 @@ void displayArray(Order *arr){
 
 }
 
-int main(){
+int main(){ 
 
+    Order *history = new Order[NR_ORDERS];
 
-/*	
-    Customer *arr = nullptr;
-    *arr //make the size variable (maybe edit the orders array to have a variable size too)
-*/	 
+    for (int i = 0; i < NR_ORDERS; i++)
+        createOrder(&history[i]);
+    for (int i = 0; i < NR_ORDERS; i++)
+        displayOrder(&history[i]);
 
-    Order test;
-    Order *testPtr = &test;
-
-    createOrder(testPtr);
-    displayOrder(testPtr);
-
-    //delete [] arr;
-
+    return 0;
 }
 
 

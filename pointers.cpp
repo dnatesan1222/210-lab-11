@@ -22,7 +22,8 @@ struct Order{ //bakery's database of orders
 //arguments: none
 //returns: an Order struct based upon the user's input
 void createOrder(Order *ptr){
-    
+
+    static int nrOrd = 1;    
     cout << "Customer name: ";
     getline(cin, ptr->name);
 
@@ -34,33 +35,31 @@ void createOrder(Order *ptr){
     cin.ignore();        
 
     ptr -> items = new string[ptr->count];
-    for (int i = 0; i < temp.count; i++){
+    for (int i = 0; i < ptr->count; i++){
         cout << "Item " << (i+1) << ": ";
-        getline(cin, temp->items[i]);
+        getline(cin, ptr->items[i]);
     }
-    cin.ignore();
 
-
-    cout << endl;
-    
+    cout << '\n' << endl;
+    nrOrd++;
 
 }
 
 // displayOrder() outputs an Order object's data
 // arguments: takes in an order object to use to output its information
 // returns: nothing
-void displayOrder(Order o){
+void displayOrder(Order *ptr){
 
-    cout << "\nCustomer name: " << o.name;
-    cout << "\nOrder total: $" << o.money;
+    cout << "Customer name: " << ptr->name;
+    cout << "\nOrder total: $" << ptr->money;
     cout << "\nItems: ";
-    for (int i = 0; i < o.count; i++){
+    for (int i = 0; i < ptr->count; i++){
 	if (i == 0)
-	cout << o.items[i];
+	    cout << ptr->items[i];
 	else
-        cout << ", " << o.items[i];
+            cout << ", " << ptr->items[i];
     } 
-    cout<< '\n' << endl;
+    cout << '\n' << endl;
 }
 
 void displayArray(Order *arr){
@@ -70,15 +69,19 @@ void displayArray(Order *arr){
 
 int main(){
 
-	
+
+/*	
     Customer *arr = nullptr;
     *arr //make the size variable (maybe edit the orders array to have a variable size too)
-	 
+*/	 
 
-    Order test = createOrder();
-    displayOrder(test);
+    Order test;
+    Order *testPtr = &test;
 
-    delete [] arr;
+    createOrder(testPtr);
+    displayOrder(testPtr);
+
+    //delete [] arr;
 
 }
 

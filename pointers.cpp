@@ -21,30 +21,28 @@ struct Order{ //bakery's database of orders
 //createOrder() takes user input to create an Order object
 //arguments: none
 //returns: an Order struct based upon the user's input
-Order createOrder(){
+void createOrder(Order *ptr){
     
-    Order temp;
-    temp.items = nullptr;
-
     cout << "Customer name: ";
-    getline(cin, temp.name);
+    getline(cin, ptr->name);
 
     cout << "Order total: $";
-    cin >> temp.money;
+    cin >> ptr->money;
 
     cout << "Item count: ";
-    cin >> temp.count;
+    cin >> ptr->count;
     cin.ignore();        
 
-    temp.items = new string[temp.count];
+    ptr -> items = new string[ptr->count];
     for (int i = 0; i < temp.count; i++){
         cout << "Item " << (i+1) << ": ";
-        getline(cin, temp.items[i]);
+        getline(cin, temp->items[i]);
     }
+    cin.ignore();
 
 
-    // returns: a Order struct based upon the user's input
-    return temp;
+    cout << endl;
+    
 
 }
 

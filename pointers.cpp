@@ -7,6 +7,7 @@ using namespace std;
 
 const int NR_ORDERS = 3;
 
+// Order() is a struct that stores 3 variables and a dynamic array about a singular order
 struct Order{ //bakery's database of orders
 
     string name; //customer name
@@ -44,7 +45,7 @@ void createOrder(Order *ptr){
         getline(cin, ptr->items[i]);
     }
 
-    cout << '\n' << endl;
+    cout << endl;
     nrOrd++;
 
 }
@@ -66,17 +67,18 @@ void displayOrder(Order *ptr){
     cout << '\n' << endl;
 }
 
-void displayArray(Order *arr){
-    
 
-}
-
+// main() creates a dynamic array of the Order structs to create an order history for the bakery
+// arguments: none
+// returns: 0 at the end to clear the memory
 int main(){ 
 
+    cout << '\n';
     Order *history = new Order[NR_ORDERS];
 
     for (int i = 0; i < NR_ORDERS; i++)
         createOrder(&history[i]);
+    cout << '\n';
     for (int i = 0; i < NR_ORDERS; i++)
         displayOrder(&history[i]);
 
